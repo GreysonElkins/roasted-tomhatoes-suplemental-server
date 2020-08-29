@@ -79,5 +79,16 @@ app.get('/api/v1/favorites', (request, response) => {
   response.status(200).json(app.locals.favoriteMovieIds);
 })
 
+app.delete('/api/v1/favorites/:id', (request, response) => {
+  const movie_id = +request.params.id
+  let favorites = app.locals.favoriteMovieIds.favorites
+  if(movie_id && favorites.includes(movie_id)) {
+    app.locals.favoriteMovieIds.favorites = favorites.filter(movie => movie !== movie_id)
+    return response.status(200).json(favorites)
+  } else {
+    response.status(404).json(movie_id)
+  }
+})
+
 // Listen for queries to this server
 app.listen(app.get('port'), () => console.log(`${app.locals.title} is now listening on port ${app.get('port')}!`));
