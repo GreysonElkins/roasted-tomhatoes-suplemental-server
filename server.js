@@ -13,7 +13,7 @@ app.use(cors());
 // you can add as many key/value pairs to the app.locals object as you wish!
 app.locals.title = 'Rancid Tomatillos Microservice Server';
 app.locals.encouragement = ["You can do it!", "I believe in you!", "You got this!"];
-app.locals.comments = []
+app.locals.comments = [{author: "Charlie", movieId: 149, id: 1, comment: "This movie is rock and roll"}]
 app.locals.favoriteMovieIds = {favorites: [620, 437518, 594718]}
 
 // Example GET endpoint
@@ -62,13 +62,13 @@ app.post('/api/v1/favorites', (request, response) => {
   
   let message;
   const movieId = +request.body.id
-  const foundMovieIndex = app.locals.favoriteMovieIds.findIndex(id => id === movieId);
+  const foundMovieIndex = app.locals.favoriteMovieIds.favorites.findIndex(id => id === movieId);
   
   if (foundMovieIndex < 0) {
-    app.locals.favoriteMovieIds.push(movieId);
+    app.locals.favoriteMovieIds.favorites.push(movieId);
     message = `Movie with an id of ${movieId} was favorited`
   } else {
-    app.locals.favoriteMovieIds.splice(foundMovieIndex, 1);
+    app.locals.favoriteMovieIds.favorites.splice(foundMovieIndex, 1);
     message = `Movie with an id of ${movieId} was un-favorited`
   }
 
