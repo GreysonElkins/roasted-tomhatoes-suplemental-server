@@ -1,1 +1,1 @@
-echo "web: npm start" > Procfile
+echo "web: npm start server.js" > Procfile
