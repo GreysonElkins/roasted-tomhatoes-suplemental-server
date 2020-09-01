@@ -4,10 +4,10 @@ const cors = require('cors');
 
 // Designate the port this server will run through
 // app.set(process.env.port || 5000);
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Our app is running on port ${PORT}`);
-});
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Our app is running on port ${PORT}`);
+// });
 
 // Declare app-level middleware
 app.use(express.json());
@@ -95,4 +95,4 @@ app.delete('/api/v1/favorites/:id', (request, response) => {
 })
 
 // Listen for queries to this server
-app.listen(app.get('port'), () => console.log(`${app.locals.title} is now listening on port ${app.get('port')}!`));
+app.listen(process.env.PORT, '0.0.0.0')
